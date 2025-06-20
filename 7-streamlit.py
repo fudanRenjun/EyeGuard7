@@ -1,5 +1,6 @@
 import streamlit as st
 import numpy as np
+import matplotlib.pyplot as plt
 try:
     import joblib
 except Exception as e:
@@ -8,7 +9,6 @@ except Exception as e:
     raise
 
 import pandas as pd
-import matplotlib.pyplot as plt
 from matplotlib import font_manager as fm
 
 
