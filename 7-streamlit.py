@@ -2,11 +2,12 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+
 try:
-    import joblib
+    from joblib import load
 except Exception as e:
     # 页面和日志都会显示
-    st.error(f"⚠️ 导入 joblib 失败：{type(e).__name__}: {e}")
+    st.error(f"⚠️ 导入 joblib.load 失败：{type(e).__name__}: {e}")
     raise
 
 # --- Configuration ---
@@ -86,8 +87,8 @@ elif page == "Start Screening":
     st.header("Enter Clinlabomics Indicators")
 
     try:
-        binary_model = joblib.load(BINARY_MODEL_PATH)
-        multi_model = joblib.load(MULTI_MODEL_PATH)
+        binary_model = load(BINARY_MODEL_PATH)
+        multi_model = load(MULTI_MODEL_PATH)
     except Exception as e:
         st.error(f"Failed to load models: {e}")
         st.stop()
@@ -154,7 +155,7 @@ elif page == "Start Screening":
                                 edgecolor='black',
                                 linewidth=0.8)
 
-                ax1.set_ylim(0, 1.1)  # ← 修改这里
+                ax1.set_ylim(0, 1.1)
                 ax1.set_ylabel("Probability", fontsize=font_size_label)
                 ax1.set_title("Non-7 eye diseases vs. 7 eye diseases", fontsize=12)
                 ax1.set_xticks(x_positions)
@@ -169,7 +170,7 @@ elif page == "Start Screening":
                     height = bar.get_height()
                     ax1.annotate(f"{height:.1%}",
                                  xy=(bar.get_x() + bar.get_width() / 2, height),
-                                 xytext=(0, 10),  # ← 修改这里
+                                 xytext=(0, 10),
                                  textcoords="offset points",
                                  ha='center', va='bottom',
                                  fontsize=font_size_anno)
@@ -197,7 +198,7 @@ elif page == "Start Screening":
                                 edgecolor='black',
                                 linewidth=0.8)
 
-                ax2.set_ylim(0, 1.1)  # ← 修改这里
+                ax2.set_ylim(0, 1.1)
                 ax2.set_ylabel("Probability", fontsize=font_size_label)
                 ax2.set_title("7 Eye Diseases Subtype Probabilities", fontsize=12)
                 ax2.tick_params(axis='x', labelsize=font_size_tick, rotation=45)
@@ -210,7 +211,7 @@ elif page == "Start Screening":
                     height = bar.get_height()
                     ax2.annotate(f"{height:.1%}",
                                  xy=(bar.get_x() + bar.get_width() / 2, height),
-                                 xytext=(0, 10),  # ← 修改这里
+                                 xytext=(0, 10),
                                  textcoords="offset points",
                                  ha='center', va='bottom',
                                  fontsize=font_size_anno)
@@ -227,4 +228,3 @@ elif page == "Start Screening":
                 - **RP**: Retinitis Pigmentosa  
                 - **RVO**: Retinal Vein Occlusion
                 """)
-
