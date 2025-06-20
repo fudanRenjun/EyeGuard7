@@ -6,8 +6,8 @@ from matplotlib import font_manager as fm
 import numpy as np
 
 # --- Configuration ---
-BINARY_MODEL_PATH = "E:/RS/7种眼病/2分类-12-stacking.pkl"
-MULTI_MODEL_PATH = "E:/RS/7种眼病/7分类-12-stacking.pkl"
+BINARY_MODEL_PATH = "2-12-stacking.pkl"
+MULTI_MODEL_PATH = "7-12-stacking.pkl"
 
 # 1) Model features
 binary_features = [
