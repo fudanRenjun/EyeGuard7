@@ -1,19 +1,13 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 try:
     import joblib
 except Exception as e:
     # 页面和日志都会显示
     st.error(f"⚠️ 导入 joblib 失败：{type(e).__name__}: {e}")
     raise
-
-import pandas as pd
-from matplotlib import font_manager as fm
-
-
-# …其余代码
-
 
 # --- Configuration ---
 BINARY_MODEL_PATH = "2-12-stacking.pkl"
