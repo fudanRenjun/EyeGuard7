@@ -1,6 +1,16 @@
 import streamlit as st
+import streamlit as st
+
+try:
+    import joblib
+except Exception as e:
+    st.error(f"⚠️ Import joblib failed: {type(e).__name__}: {e}")
+    raise  # 重新抛出让 Streamlit 停止，并在日志里输出完整 Traceback
+
 import pandas as pd
-import joblib
+# …后面的 import
+
+import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import font_manager as fm
 import numpy as np
