@@ -6,7 +6,6 @@ import pandas as pd
 try:
     from joblib import load
 except Exception as e:
-    # 页面和日志都会显示
     st.error(f"⚠️ 导入 joblib.load 失败：{type(e).__name__}: {e}")
     raise
 
@@ -62,8 +61,20 @@ class_mapping = {
 st.set_page_config(page_title="EyeGuard 7", layout="wide")
 st.title("EyeGuard 7: Eye Disease Screening")
 
-page = st.sidebar.selectbox("Choose a page", ("Introduction", "Start Screening"))
+# 页面切换按钮（替代下拉框）
+if "page" not in st.session_state:
+    st.session_state.page = "Introduction"
 
+with st.sidebar:
+    st.write("## 页面导航")
+    if st.button("📖 项目介绍"):
+        st.session_state.page = "Introduction"
+    if st.button("🩺 开始筛查"):
+        st.session_state.page = "Start Screening"
+
+page = st.session_state.page
+
+# --- 页面内容 ---
 if page == "Introduction":
     st.header("Project Overview")
     st.write("""
@@ -78,10 +89,10 @@ if page == "Introduction":
 
     **Instructions**:
     The model can be utilized for differential screening of the following diseases: Age-related Macular Degeneration, Age-related Cataract, Diabetic Retinopathy, Glaucoma, Retinal Detachment, Retinitis Pigmentosa, and Retinal Vein Occlusion.
-    - Go to **Start Screening** to enter lab values.
+    - Go to **开始筛查** to enter lab values.
     - Only when binary result is "Disease" will the subtype prediction run.
     """)
-    st.info("Use the sidebar to switch between pages.")
+    st.info("请在左侧点击“🩺 开始筛查”开始使用模型。")
 
 elif page == "Start Screening":
     st.header("Enter Clinlabomics Indicators")
