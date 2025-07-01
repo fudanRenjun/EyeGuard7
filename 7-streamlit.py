@@ -92,7 +92,7 @@ if page == "Introduction":
     - Go to **Screening** to enter lab values.
     - Only when binary result is "Disease" will the subtype prediction run.
     """)
-    st.info("请在左侧点击“🩺 开始筛查”开始使用模型。")
+st.info("Please click '🩺 Start Screening' on the left to begin using the model.")
 
 elif page == "Start Screening":
     st.header("Enter Clinlabomics Indicators")
