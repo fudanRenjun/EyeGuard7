@@ -64,12 +64,12 @@ st.title("EyeGuard 7: Eye Disease Screening")
 # 页面切换按钮（替代下拉框）
 if "page" not in st.session_state:
     st.session_state.page = "Introduction"
-
+    
 with st.sidebar:
-    st.write("## 页面导航")
-    if st.button("📖 项目介绍"):
+    st.write("## Page Navigation")
+    if st.button("📖 Introduction"):
         st.session_state.page = "Introduction"
-    if st.button("🩺 开始筛查"):
+    if st.button("🩺 Start Screening"):
         st.session_state.page = "Start Screening"
 
 page = st.session_state.page
