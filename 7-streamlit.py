@@ -240,3 +240,4 @@ elif page == "Start Screening":
                 - **RP**: Retinitis Pigmentosa  
                 - **RVO**: Retinal Vein Occlusion
                 """)
+
