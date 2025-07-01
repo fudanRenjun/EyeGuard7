@@ -89,7 +89,7 @@ if page == "Introduction":
 
     **Instructions**:
     The model can be utilized for differential screening of the following diseases: Age-related Macular Degeneration, Age-related Cataract, Diabetic Retinopathy, Glaucoma, Retinal Detachment, Retinitis Pigmentosa, and Retinal Vein Occlusion.
-    - Go to **开始筛查** to enter lab values.
+    - Go to **Screening** to enter lab values.
     - Only when binary result is "Disease" will the subtype prediction run.
     """)
     st.info("请在左侧点击“🩺 开始筛查”开始使用模型。")
