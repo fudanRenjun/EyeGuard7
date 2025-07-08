@@ -32,48 +32,46 @@ X_train, X_test, y_train, y_test = train_test_split(
 # 3. 定义每个模型的超参数网格
 param_grids = {
     "adaboost": {
-        'n_estimators': [50, 100, 200],
-        'learning_rate': [0.01, 0.1, 1.0]
+        'n_estimators': [50, 100, 200],  # number of estimators
+        'learning_rate': [0.01, 0.1, 1.0]  # learning rate
     },
     "knn": {
-        'n_neighbors': [3, 5, 7, 9],
-        'weights': ['uniform', 'distance'],
-        'p': [1, 2]
+        'n_neighbors': [3, 5, 7, 9],  # number of neighbors
+        'weights': ['uniform', 'distance'],  # distance metric
+        'p': [1, 2]  # 1 for manhattan, 2 for euclidean
     },
     "lr": {
-        'C': [0.001, 0.01, 0.1, 1, 10],
-        'penalty': ['l2'],  # 对于多分类问题，'l1'需要solver支持
-        'solver': ['lbfgs', 'saga']
+        'C': [0.001, 0.01, 0.1, 1, 10],  # regularization strength
+        'penalty': ['l2'],  # penalty type (l1 requires different solver)
+        'solver': ['lbfgs', 'saga']  # optimization algorithm
     },
     "mlp": {
-        'hidden_layer_sizes': [(50,), (100,), (50, 50)],
-        'activation': ['relu', 'tanh'],
-        'alpha': [0.0001, 0.001, 0.01]
+        'hidden_layer_sizes': [(50,), (100,), (50, 50)],  # hidden layer sizes
+        'activation': ['relu', 'tanh'],  # activation function
+        'alpha': [0.0001, 0.001, 0.01]  # L2 penalty (regularization term)
     },
     "nb": {
-        # 朴素贝叶斯没有太多超参数
-        'var_smoothing': [1e-9, 1e-8, 1e-7]
+        'var_smoothing': [1e-9, 1e-8, 1e-7]  # smoothing parameter α
     },
     "rf": {
-        'n_estimators': [100, 200, 300],
-        'max_depth': [None, 10, 20],
+        'n_estimators': [100, 200, 300],  # number of trees
+        'max_depth': [None, 10, 20],  # maximum depth
         'min_samples_split': [2, 5, 10],
         'min_samples_leaf': [1, 2, 4]
     },
     "svm": {
-        'C': [0.1, 1, 10],
+        'C': [0.1, 1, 10],  # regularization C
         'kernel': ['linear', 'rbf'],
-        'gamma': ['scale', 'auto']
+        'gamma': ['scale', 'auto']  # kernel coefficient γ
     },
     "xgboost": {
         'n_estimators': [100, 200],
-        'max_depth': [3, 5, 7],
-        'learning_rate': [0.01, 0.1],
-        'subsample': [0.8, 1.0],
+        'max_depth': [3, 5, 7],  # max depth
+        'learning_rate': [0.01, 0.1],  # learning rate
+        'subsample': [0.8, 1.0],  # subsampling ratio
         'colsample_bytree': [0.8, 1.0]
     }
 }
-
 
 # 4. 定义模型创建函数（带超参数调优）
 def get_tuned_model(model_name, X_train, y_train):
